@@ -164,7 +164,7 @@ For more details: https://happygitwithr.com/install-git
 
 ## Initiate a Git repo 
 
-In order to reduce the learning curve, we will learn R Studio of interacting with git
+In order to reduce the learning curve, we will learn the R Studio way of interacting with git
 
 So many other ways to interact with git:
 
@@ -226,8 +226,20 @@ Click on commit in order to commit the changes!
 
 ## Edit your script 
 
+:::: {.columns}
+
+::: {.column width="45%"}
 ![](https://git-scm.com/images/about/index1@2x.png){fig-align="center"}
 
-Note that once you have staged a file, you could do more changes, and you would need to re-run git add to add them to the index. Those changes not yet fully registered by git, they are like a draft, not until you commit. When you want to take a snapshot of a file, it means you are ready to commit that change to the index.
+:::
+
+::: {.column width="55%"}
+- Note that once you have staged a file, you could do more changes, and you would need to re-run git add to add them to the index. Those changes not yet fully registered by git, they are like a draft, not until you commit. 
+- When you want to take a snapshot of a file, it means you are ready to commit that change to the index.
+:::
+
+::::
+
+
 
 
