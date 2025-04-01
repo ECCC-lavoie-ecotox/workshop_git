@@ -9,5 +9,6 @@ contributes:
       menu:
         side: left
       slide-number: true
+      logo: https://insileco.io/img/logo.svg
       date-format: long
 

@@ -1,0 +1,233 @@
+---
+title: How to make your scientific code accessible and reproducible?
+subtitle: Using Git and Github
+format:
+  clean-revealjs:
+    self-contained: true
+html-math-method:
+  method: mathjax
+  url: "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
+author:
+  - name: Steve Vissault
+    orcid: 0000-0002-0866-4376
+    email: steve.vissault@insileco.io
+    affiliations: inSileco
+date: last-modified
+---
+
+# Who am I? {background-color="#40666e"}
+
+## Who am I?
+
+:::: {.columns}
+
+::: {.column width="35%"}
+![](img/rabbit_hole.jpg)
+:::
+
+::: {.column width="65%"}
+- Steve Vissault, M.Sc in forest ecology
+  - How climate changes will shape forest distributions at the end of this century  
+- Research professional at UdS for 3 years
+  - Works on [mangal.io](https://mangal.io), designs and develops the informatic infrastructure of [Biodiversité Québec](https://biodiversite-quebec.ca/fr)
+:::
+
+::::
+
+- Then I did software developement for [Omnimed](https://omnimed.ca), an Electronic Medical Records (EMR) for 3 years
+- Started a consulting company [inSileco](insileco.io) 4 years ago with 2 amazing ecologists 
+- Now, taking a position at INRS with Valérie Langlois for the next 2 years
+
+# What is Git? {background-color="#40666e"}
+
+## What is Git?
+
+- *Git* is a version control system: a software that allows you to track additions and modifications for a set of files within a **folder**, called a **repository**
+- Its original purpose was to help groups of developers work collaboratively on big software projects.  
+- Think *git* as the “Track Changes” features from Microsoft Word on steroids.
+
+## Git - Context
+
+Compiled software are a bunch of files. At each software improvment, developers want the software to be stable with no regression. For that, they have to know what files have changed between snapshots.
+
+![](https://git-scm.com/book/en/v2/images/snapshots.png){fig-align="center"}
+
+# Why is this relevant to a scientist? {background-color="#40666e"}
+
+## Why is this relevant to a scientist? 
+
+![](https://econumuds.github.io/BIO500/bloc1/assets/img/flow_biometrie.png)
+
+## Why is this relevant to a scientist? 
+
+![](https://econumuds.github.io/BIO500/bloc1/assets/img/flow_bio500.png)
+
+## Why is this relevant to a scientist? 
+
+![](https://econumuds.github.io/BIO500/bloc2/assets/img/flow_full_repro.png)
+
+
+# Git fondations {background-color="#40666e"}
+
+## Git fondations: `add` & `commit`
+
+![](https://insileco.io/learning_git/img/part1/sp_1.png){fig-align="center"}
+
+## Git fondations: `add` & `commit`
+
+![](https://insileco.io/learning_git/img/part1/sp_2.png){fig-align="center"}
+
+## Git fondations: `add` & `commit`
+
+![](https://insileco.io/learning_git/img/part1/sp_3.png){fig-align="center"}
+
+## Git fondations: `add` & `commit`
+
+![](https://insileco.io/learning_git/img/part1/sp_6.png){fig-align="center"}
+
+## Git fondations: `add` & `commit`
+
+![](https://insileco.io/learning_git/img/part1/sp_5.png){fig-align="center"}
+
+## Git fondations: `add` & `commit`
+
+![](https://insileco.io/learning_git/img/part1/sp_4.png){fig-align="center"}
+
+## Git fondations: `branches`
+
+![](https://insileco.io/learning_git/img/part1/sp_7.png){fig-align="center"}
+
+## Git fondations: `branches`
+
+:::: {.columns}
+
+::: {.column width="50%"}
+![](https://econumuds.github.io/BIO500/bloc2/assets/img/git_1.png)
+:::
+
+::: {.column width="50%"}
+- Une branche (`main` par défault): c'est un série de commentaires (`commit`)
+- Le dernier commentaire (`commit`) est ce que l'on appelle la tête de la branche (`HEAD`), elle contient la version la plus à jour des fichiers.
+- À chaque commentaire d'édition (`commit`) est attachée une version des fichiers.
+:::
+
+::::
+
+## Git fondations: `local` vs `remote`
+
+![](https://econumuds.github.io/BIO500/bloc2/assets/img/git_workflow2.png){fig-align="center"}
+
+## How *git* helps in science reproducibility
+
+- *Git* is a coding notebook: it documents not only the code but also the coding process
+- It makes your code findable and reusable by publishing on a remote repository Github
+- All the code source, data and figs are accessible from one location
+
+## In summary
+
+1. Initiate the repository (`git init`)
+2. Edit your files
+3. Stage the modifications to be committed (`git add`)
+4. Create a new commit object (`git commit`)
+5. Go back to step 2.
+6. Publish your code on the remote server (`git fetch` & `git push`)
+7. Go back from vacation
+8. Watch if another developer has release new version of the code on the remote repository (`git fetch` & `git pull`)
+
+
+# How to use Git in practice? {background-color="#40666e"}
+
+## Prerequisites
+
+1. Make sure R version ≥ 4.0 is installed on your computer
+2. Install Git:
+  - Windows, Install Git for Windows (also known as msysgit or Git Bash) to get Git and tools like the Bash shell.   Download the executable [here](https://github.com/git-for-windows/git/releases/tag/v2.49.0.windows.1)
+  - macOS, open a terminal and type: 
+      - `git —version` 
+      - `git config`
+    - If Git isn’t installed, macOS will prompt you to install it.
+  - Linux, nothing to do—Git is likely pre-installed.
+
+For more details: https://happygitwithr.com/install-git
+
+## What we're going to do
+
+1. Create a folder 
+2. Initiate a git repo for this new folder
+3. Create a new R script (file 1) and edit it 
+4. Stage this new R script in the git repo
+5. Add a commit to document the added file
+6. Create a second R script (file 2) in the git repo and edit (file 3)
+7. Repeat steps 4 and 5 for this second script
+8. Check the git log 
+9. Get back to the first commit
+
+## Initiate a Git repo 
+
+In order to reduce the learning curve, we will learn R Studio of interacting with git
+
+So many other ways to interact with git:
+
+ - Using R with the `gert` package
+ - Using the terminal
+ - Using as GUI such as Github Desktop
+
+**All the key concepts and process still the same!**
+
+## Initiate a Git repo 
+
+To use git in Rstudio, you need to create a new Project. Let’s start by creating our project directory.
+
+Open RStudio, in the top right corner create a new project
+
+![](https://valentinlucet.com/git-and-github-with-r-workshop/images/Step_1.png){fig-align="center"}
+
+- Select *New Directory* Note that Version Control is reserved for when you already created a repo on GitHub. 
+- Select *New Projects*
+- Choose a name for your repo and a location. **Make sure that create a git repository is checked**
+
+## Initiate a Git repo 
+
+You can now look under the *git* tab, you should see this:
+
+![](https://valentinlucet.com/git-and-github-with-r-workshop/images/final.png){fig-align="center"}
+
+## Create a new R script
+
+Create a new file: go to the menu File => New file => R Script. Make sure to save it with the name script_1.R.
+
+**What happens in the git tab?**
+
+### Understand file status
+
+- Files that are **untracked** are represented by a yellow question mark.
+- Files that have **been added** (see next section) are represented by a green A
+- Files that have **been tracked and modified** are represented by a blue M.
+- Files that are **tracked but not modified** do not show.
+- Files that have **been delete**d are shown with a red D.
+
+## Stage a new R script
+
+This is as simple as “checking off” the file in the Git tab. This is called Staging the file.
+
+![](https://valentinlucet.com/git-and-github-with-r-workshop/images/checked.png){fig-align="center"}
+
+What is a gitignore? A gitignore is a file that lists the file you never want git to track. It can match certain file names (for instance, .csv or .tif files). This can be useful in case you need to make sure certain files (like data files or large files), do not get added.
+
+## Create a commit
+
+Click on commit on the top of the file list. This window should appear:
+
+![](https://valentinlucet.com/git-and-github-with-r-workshop/images/commit.png){fig-align="center"}
+
+Before committing anything you need to add a commit message. It is important to add a useful message to your commit, a bit like a journal entry, so that you can remember what you committed.
+
+Click on commit in order to commit the changes!
+
+## Edit your script 
+
+![](https://git-scm.com/images/about/index1@2x.png){fig-align="center"}
+
+Note that once you have staged a file, you could do more changes, and you would need to re-run git add to add them to the index. Those changes not yet fully registered by git, they are like a draft, not until you commit. When you want to take a snapshot of a file, it means you are ready to commit that change to the index.
+
+

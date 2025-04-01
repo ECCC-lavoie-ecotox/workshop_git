@@ -1,2 +1,4 @@
 /.quarto/
 default_files
+*.html
+.DS_store
