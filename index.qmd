@@ -364,6 +364,8 @@ Paste the token you copied in the previous step
 
 Assess if everything is fine and the credentials are OK
 
+**Run the following command in RStudio**
+
 ```{r}
 #| echo: true
 #| eval: false
@@ -376,6 +378,8 @@ If you want to know more on this authentification process, [have a look at the `
 :::
 
 ##	Step 3. Connect your local repository to GitHub
+
+**Run the following command in RStudio**
 
 ```{r}
 #| echo: true
