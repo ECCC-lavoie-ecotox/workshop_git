@@ -36,7 +36,7 @@ code-copy: true
 ::::
 
 - Then I did software developement for [Omnimed](https://omnimed.ca), an Electronic Medical Records (EMR) for 3 years
-- Started a consulting company [inSileco](insileco.io) 4 years ago with 2 amazing ecologists 
+- I founded a consulting company [inSileco](insileco.io) 4 years ago with 2 amazing ecologists 
 - Now, taking a position at INRS with Valérie Langlois for the next 2 years
 
 # <span style="font-weight:lighter;font-size:32px">Workshop 1</span> <br> What is Git, why and how to use it? {background-color="#40666e"}
@@ -243,6 +243,19 @@ Click on commit in order to commit the changes!
 
 # <span style="font-weight:lighter;font-size:32px">Workshop 2</span> <br> What is Github and how to use it to collaborate? {background-color="#40666e"}
 
+## Before we start
+
+Let's make sure you have the following packages installed on your computer:
+
+- `usethis` to create a GitHub token
+- `gitcreds` to store the token in your local system
+
+```{r}
+#| echo: true
+#| eval: false
+install.packages(c("usethis", "gitcreds"))
+```
+
 ## Review of Workshop 1
 
 In the first workshop, we learned the basics of Git. We covered:
@@ -302,15 +315,15 @@ Committing is like taking the picture
 
 ::::
 
-## How to connect your local repository to Github? 
+# Connect your local repository to GitHub {background-color="#40666e"}
 
-**Étape 1.** Pour ceux qui n'ont pas de compte, [s'inscrire sur Github en suivant le lien](https://github.com/signup?ref_cta=Sign+up&ref_loc=header+logged+out&ref_page=%2F&source=header-home)
+## **Step 1.** Create a GitHub account
+
+**Step 1.** For those who don't have an account, [sign up on GitHub using this link](https://github.com/signup?ref_cta=Sign+up&ref_loc=header+logged+out&ref_page=%2F&source=header-home)
 
 ![](img/github_signup.png){fig-align="center" width="70%"}
 
-## How to connect your local repository to Github? 
-
-**Étape 2.** Configurer ses credentials pour que Github nous reconnaisse
+## Step 2. Set up your credentials so GitHub recognizes you
 
 We have to store a *token* in our local system. This token is used to authenticate your computer with Github. 
 
@@ -318,9 +331,7 @@ We have to store a *token* in our local system. This token is used to authentica
 Token = password
 :::
 
-## How to connect your local repository to Github? 
-
-**Étape 2.** Configurer ses credentials pour que Github nous reconnaisse
+## Step 2. Set up your credentials so GitHub recognizes you
 
 **Run the following command in RStudio**
 
@@ -333,9 +344,7 @@ usethis::create_github_token()
 1. This command will open your browser at Github page, log in 
 2. Name explictly the token (e.g based on your current R project), copy the token starting with `ghp_`
 
-## How to connect your local repository to Github? 
-
-**Étape 2.** Configurer ses credentials pour que Github nous reconnaisse
+## Step 2. Set up your credentials so GitHub recognizes you
 
 **Run the following command in RStudio**
 
@@ -351,9 +360,7 @@ This command will open a prompt in RStudio
 
 Paste the token you copied in the previous step
 
-## How to connect your local repository to Github? 
-
-**Étape 2.** Configurer ses credentials pour que Github nous reconnaisse
+##	Step 3. Connect your local repository to GitHub
 
 Assess if everything is fine and the credentials are OK
 
@@ -368,9 +375,7 @@ This way, you will not have to enter your credentials every time you push or pul
 If you want to know more on this authentification process, [have a look at the `usethis` documentation](https://usethis.r-lib.org/articles/git-credentials.html)
 :::
 
-## How to connect your local repository to Github?  
-
-**Étape 3.** Connect your local repository to Github
+##	Step 3. Connect your local repository to GitHub
 
 ```{r}
 #| echo: true
@@ -417,7 +422,7 @@ Lets have a quick look at the Github repo on the website.
 Lets go back on RStudio and check the Git tab.
 Two new buttons `Pull` and `Push` are now available.
 
-![](img/pull-push.png){fig-align="center"}
+![](img/pull-push.png){width="40%"}
 
 
 ## How to synchronize with the remote (Github)?
@@ -427,8 +432,9 @@ Two new buttons `Pull` and `Push` are now available.
 ::: {.column width="50%"}
 - **Step 1:** Edit your files
 - **Step 2:** `Commit`, move a changed local file to your local staging area 
-- **Step 3:** `Pull`, get file(s) from the cloud to your local computer – opposite of a “push”
-- **Step 4:** `Push`, move file(s) to the cloud from your local computer – opposite of a “pull”
+- **Step 3:** `Pull`, will get the latest remote version and try to merge it with your local version
+- **Step 4:** `Push`, will send your local version to the remote version of the repository (in our case GitHub)
+
 :::
 
 ::: {.column width="50%"}
@@ -441,27 +447,27 @@ Two new buttons `Pull` and `Push` are now available.
 You have to repeat step 2-4, every time you edit, add, delete a new file if you want to keep your local and remote repository in sync.
 :::
 
+# Collaborate to an existing repository {background-color="#40666e"}
 
+## Collaborate to an existing repository
 
-## Let's practice
+If I'm a collaborator on a project, I need to be able to get the latest version of the code from the remote repository. 
 
-- Create a new R script (file 2) and edit it
-- Stage this new R script in the git repo
-- Add a commit to document the added file
-- Create a second R script (file 3) in the git repo and edit it
-- Repeat steps 4 and 5 for this second script
-- Check the git log
-- Publish the new files on the remote server (Github)
+To accomplish this, I **Clone** the remote repository to my local computer. Clone means to copy the entire contents of a GitHub repository to your local computer.
 
-{{< countdown minutes=20>}}
+## Collaborate to an existing repository
 
-## Let's practice
+Navigate to the repository on GitHub and click on Code. Select HTTPS and copy the link.
 
-:::{.callout-tip}
-Reminder on git file status:
+![](https://pages.github.nceas.ucsb.edu/lter/github-workshop/images/rstudio-6-new-repo-link.png){width="100%"}
 
-![](https://pages.github.nceas.ucsb.edu/lter/github-workshop/images/rstudio-icons.png){fig-align="center" width="50%"}
-:::
+## Collaborate to an existing repository
+
+1. And finally, in RStudio, go to **File > New Project > Version Control > Git** 
+2. Paste the link you copied from GitHub. 
+3. Select a local directory where you want to save the repository.
+
+![](https://pages.github.nceas.ucsb.edu/lter/github-workshop/images/rstudio-11-clone-repo-details.png){width="100%"}
 
 ## To sum up on the new git vocabulary
 
@@ -478,6 +484,73 @@ Reminder on git file status:
 :::
 ::::
 
+## Let's practice
+
+- Create a new R script (file 2) and edit it
+- Stage this new R script in the git repo
+- Add a commit to document the added file
+- Create a second R script (file 3) in the git repo and edit it
+- Repeat steps 4 and 5 for this second script
+- Check the git log
+- Publish the new files on the remote server (Github)
+
+{{< countdown minutes=20 >}}
+
+## Let's practice
+
+:::{.callout-tip}
+**Reminder on git file status:**
+
+![](https://pages.github.nceas.ucsb.edu/lter/github-workshop/images/rstudio-icons.png){fig-align="center" width="60%"}
+:::
+
+# Collaborate on Github <br> <span style="font-weight:lighter;font-size:32px">can generate conflicts...</span> {background-color="#40666e"}
+
+## Before we start
+
+Invite a collaborator to your repository on GitHub.
+
+- Go to your repository on GitHub
+- Click on the **Settings** tab
+- Click on **Manage access** on the left
+- Click on **Invite a collaborator**
+- Enter the GitHub username of your collaborator
+- Click on **Add** to send the invitation
+
+## Before we start
+
+- Accept the invitation from your collaborator
+- Clone the repository on your local computer
+- Edit an existing file
+- Commit the changes
+- Push the changes to the remote repository
+
+## `git` conflicts
+
+- A conflict occurs when two or more people edit the same line of code in a file and then try to push their changes to the remote repository.
+
+![](https://pages.github.nceas.ucsb.edu/lter/github-workshop/images/git-conflict-cause.png){fig-align="center" width="100%"}
+
+## Resolve a `git` conflicts on RStudio
+
+![](https://pages.github.nceas.ucsb.edu/lter/github-workshop/images/git-conflict-workflow.png){fig-align="center" width="100%"}
+
+## Resolve a `git` conflicts on RStudio
+
+![](https://www2.stat.duke.edu/courses/Fall19/sta199.001/slides/lab-slides/img/03/merge-conflict-identifiers.png){fig-align="center" width="100%"}
+
+## Strategies to avoid `git` conflicts
+
+1. Communicate with your team members/collaborators often to avoid working on the same files at the same time! Let each other know who is working on what
+2. Commit often in small chunks, to avoid complex merges
+3. Pull often especially before starting to edit and pushing your changes
+
+## Let's practice
+
+In teams of 2, edit the same file at the same time in the same repository.
+Then, try to push your changes to the remote repository. A conflict should occur, let's try to resolve it.
+
+{{< countdown minutes=15 >}}
 
 ## Complementary resources
 
@@ -491,47 +564,7 @@ A lot of the content of this workshop come from or are based on the following re
 - [GitHub Guides](https://guides.github.com/)
 - [GitHub Cheat Sheet](https://github.github.com/training-kit/downloads/github-git-cheat-sheet.pdf)
 
-# Optional slides {background-color="#40666e"}
 
-## Files status in RStudio Git Tab
-
-![](https://pages.github.nceas.ucsb.edu/lter/github-workshop/images/rstudio-icons.png){fig-align="center" width="70%"}
-
-
-<!-- 
-Slide 2: Le remote pour collaborer
-  - Schéma avec Github ou Schéma plus simple dans le cours de BIO500
-Slide 3: Comment créer un remote
-  repo = folder
-  On a vu comment initier un dossier pour qu'il devienne un repository (Git)
-  Maintenant on veut dire à Git que ce dossier dispose d'un dépot central (remote), accessible à d'autres utilisateurs
-
-Slide 4: Créer un compte Github
-Slide 6: Parametrer ses credentials pour que son ordinateur puisse communiquer avec Github
-usethis::set_github credentials
-Slide 5: Synchroniser son dépot sur Github
-  - Git fetch --all
-  - Git pull 
-  - Git push
-
-Slide 6: Explorer son dépot sur Github
-  - Ou sont les commits
-  - C'est quoi la branche 
-  Se rendre sur un dépot plus complexe pour visualiser différentes branches
-
-Slide 7: Les conflits
-Qu'est-ce qu'un conflit?
-Collision dans un ensemble de fichier. Un collaborateur à fait des modifications à mon code qui rentre en collision avec ma version du code en local. Je dois résoudre ces conflits avant de pouvoir publier sur le dépoot central (remote)
-
-Exercice
-
-Careful: Don't push
-
-
-
-
- -->
-
-
+# Thank you! {background-color="#40666e" text-align="center"}
 
 
