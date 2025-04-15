@@ -2,7 +2,7 @@
 
 // Custom colours and variables
 
-$jet: #131516;
+$jet: #003550;
 $accent: #107895;
 $accent2: #9a2515;
 // $accent2: #e64173;
@@ -30,7 +30,7 @@ $font-family-sans-serif: "Roboto", sans-serif !default;
 $presentation-heading-font: "Roboto", sans-serif !default;
 
 $presentation-heading-color: $jet !default;
-$presentation-heading-font-weight: lighter;
+$presentation-heading-font-weight: bold;
 //$presentation-heading-line-height: 2;
 //$presentation-block-margin: 28px;
 $presentation-font-size-root: 32px;
@@ -102,7 +102,7 @@ $selection-bg: #26351c !default;
 
 .reveal h2 {
   // font-weight: 350;
-  font-weight: lighter;
+  font-weight: bold;
   font-size: 1.4em;
 }
 

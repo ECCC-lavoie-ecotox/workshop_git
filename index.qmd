@@ -13,6 +13,7 @@ author:
     email: steve.vissault@insileco.io
     affiliations: inSileco
 date: last-modified
+code-copy: true
 ---
 
 # Who am I? {background-color="#40666e"}
@@ -38,7 +39,7 @@ date: last-modified
 - Started a consulting company [inSileco](insileco.io) 4 years ago with 2 amazing ecologists 
 - Now, taking a position at INRS with Valérie Langlois for the next 2 years
 
-# What is Git? {background-color="#40666e"}
+# <span style="font-weight:lighter;font-size:32px">Workshop 1</span> <br> What is Git, why and how to use it? {background-color="#40666e"}
 
 ## What is Git?
 
@@ -239,6 +240,297 @@ Click on commit in order to commit the changes!
 :::
 
 ::::
+
+# <span style="font-weight:lighter;font-size:32px">Workshop 2</span> <br> What is Github and how to use it to collaborate? {background-color="#40666e"}
+
+## Review of Workshop 1
+
+In the first workshop, we learned the basics of Git. We covered:
+
+1. How to create a Git repository from an RStudio project  
+2. How to stage a file or a group of files 
+3. How to make make a commit  
+4. View the history of all commits
+5. Tell git to ignore files with a `.gitignore` file (relevant for sensitive data)
+
+## `git` Workflow Overview Reminder
+
+The typical workflow:
+
+- **Step 1**: You modify files in your working directory and save them as usual.
+- **Step 2:** You stage files to mark your intention to “commit” them (in RStudio this is done by checking the box next to the file in the “Git” tab).
+- **Step 3:** You commit the staged files, which permanently stores them as snapshots to your git directory.
+
+:::{.callout-tip}
+We can make an analogy with taking a family picture, where each family member would represent a file.
+
+Staging files is like deciding which family member(s) are going to be on your next picture
+Committing is like taking the picture
+:::
+
+## Git Glossary from Workshop 1
+
+- **Git repository**: A project folder that Git tracks. It contains all the files and a hidden .git folder where Git stores the complete history of changes.
+- **Staged file(s)** : Files that are ready to be committed
+- **Unstaged file(s)** : Files that are not ready to be committed
+- **Untracked file(s)** : Files that are not tracked by Git
+- **Commit**: A saved version of your project at a specific point in time (also called snapshot), including a message that explains what changed.
+
+## In this Workshop
+
+- How Git and GitHub work together  
+- How to synchronize your local repository:
+  - Push your commits to GitHub  
+  - Pull your collaborators’ commits from Github
+- How conflicts are generated and how to resolve them when applying your collaborators’ commits 
+
+# What is Github? {background-color="#40666e"}
+
+## What is Github?
+
+:::: {.columns}
+
+::: {.column width="40%"}
+- Github is a web-based platform.
+- Github stored your Git repository on a remote server. 
+- Github allows you to backup and make your work foundable and accessible to others.
+:::
+
+::: {.column width="60%"}
+![](https://econumuds.github.io/BIO500/bloc2/assets/img/git_workflow2.png){fig-align="center" width="65%"}
+:::
+
+::::
+
+## How to connect your local repository to Github? 
+
+**Étape 1.** Pour ceux qui n'ont pas de compte, [s'inscrire sur Github en suivant le lien](https://github.com/signup?ref_cta=Sign+up&ref_loc=header+logged+out&ref_page=%2F&source=header-home)
+
+![](img/github_signup.png){fig-align="center" width="70%"}
+
+## How to connect your local repository to Github? 
+
+**Étape 2.** Configurer ses credentials pour que Github nous reconnaisse
+
+We have to store a *token* in our local system. This token is used to authenticate your computer with Github. 
+
+:::{.callout-tip}
+Token = password
+:::
+
+## How to connect your local repository to Github? 
+
+**Étape 2.** Configurer ses credentials pour que Github nous reconnaisse
+
+**Run the following command in RStudio**
+
+```{r}
+#| echo: true
+#| eval: false
+usethis::create_github_token()
+```
+
+1. This command will open your browser at Github page, log in 
+2. Name explictly the token (e.g based on your current R project), copy the token starting with `ghp_`
+
+## How to connect your local repository to Github? 
+
+**Étape 2.** Configurer ses credentials pour que Github nous reconnaisse
+
+**Run the following command in RStudio**
+
+```{r}
+#| echo: true
+#| eval: false
+gitcreds::gitcreds_set()
+```
+
+This command will open a prompt in RStudio
+
+![](img/gitcreds_set.png){fig-align="center"}
+
+Paste the token you copied in the previous step
+
+## How to connect your local repository to Github? 
+
+**Étape 2.** Configurer ses credentials pour que Github nous reconnaisse
+
+Assess if everything is fine and the credentials are OK
+
+```{r}
+#| echo: true
+#| eval: false
+usethis::git_sitrep()
+```
+
+:::{.callout-note}
+This way, you will not have to enter your credentials every time you push or pull from GitHub.
+If you want to know more on this authentification process, [have a look at the `usethis` documentation](https://usethis.r-lib.org/articles/git-credentials.html)
+:::
+
+## How to connect your local repository to Github?  
+
+**Étape 3.** Connect your local repository to Github
+
+```{r}
+#| echo: true
+#| eval: false
+usethis::use_github()
+```
+
+:::{.callout-note}
+`usethis::use_github(private = TRUE)` if you want your repository to be private, because you are working with sensitive data
+:::
+
+The configuration is done and the local is now sync! 
+Lets have a quick look at the Github repo on the website.
+
+## Quick overview of the Github repo website
+
+:::: {.columns}
+::: {.column width="30%"}
+- Red: List of files
+- Blue: Latest commit
+- Green: when the files and directories were last modified
+:::
+
+::: {.column width="70%"}
+![](https://pages.github.nceas.ucsb.edu/lter/github-workshop/images/github-7-example-repo.png){width="100%"}
+:::
+::::
+
+
+## Quick overview of the Github repo website
+
+![](https://pages.github.nceas.ucsb.edu/lter/github-workshop/images/github-8-commit-history.png){width="100%"}
+
+
+## Quick overview of the Github repo website
+
+![](https://pages.github.nceas.ucsb.edu/lter/github-workshop/images/github-9-specific-changes.png){width="100%"}
+
+
+# How to synchronize with the remote (Github)? {background-color="#40666e"}
+
+## How to synchronize with the remote (Github)?
+
+Lets go back on RStudio and check the Git tab.
+Two new buttons `Pull` and `Push` are now available.
+
+![](img/pull-push.png){fig-align="center"}
+
+
+## How to synchronize with the remote (Github)?
+
+:::: {.columns}
+
+::: {.column width="50%"}
+- **Step 1:** Edit your files
+- **Step 2:** `Commit`, move a changed local file to your local staging area 
+- **Step 3:** `Pull`, get file(s) from the cloud to your local computer – opposite of a “push”
+- **Step 4:** `Push`, move file(s) to the cloud from your local computer – opposite of a “pull”
+:::
+
+::: {.column width="50%"}
+![](https://pages.github.nceas.ucsb.edu/lter/github-workshop/images/git-workflow.png){fig-align="center" width="100%"}
+:::
+
+::::
+
+:::{.callout-alert}
+You have to repeat step 2-4, every time you edit, add, delete a new file if you want to keep your local and remote repository in sync.
+:::
+
+
+
+## Let's practice
+
+- Create a new R script (file 2) and edit it
+- Stage this new R script in the git repo
+- Add a commit to document the added file
+- Create a second R script (file 3) in the git repo and edit it
+- Repeat steps 4 and 5 for this second script
+- Check the git log
+- Publish the new files on the remote server (Github)
+
+{{< countdown minutes=20>}}
+
+## Let's practice
+
+:::{.callout-tip}
+Reminder on git file status:
+
+![](https://pages.github.nceas.ucsb.edu/lter/github-workshop/images/rstudio-icons.png){fig-align="center" width="50%"}
+:::
+
+## To sum up on the new git vocabulary
+
+:::: {.columns}
+::: {.column width="50%"}
+- `Clone`, copy the entire contents of a GitHub repository to your local computer (done once per computer)
+- `Commit`, move a changed local file to your local staging area 
+- `Pull`, get file(s) from the remote to your local computer – opposite of a “push”
+- `Push`, move file(s) to the remote from your local computer – opposite of a “pull”
+:::
+
+::: {.column width="50%"}
+![](https://pages.github.nceas.ucsb.edu/lter/github-workshop/images/git-vocabulary.png){fig-align="center" width="100%"}
+:::
+::::
+
+
+## Complementary resources
+
+A lot of the content of this workshop come from or are based on the following resources:
+
+- [Valentin Lucet's workshop](https://valentinlucet.com/git-and-github-with-r-workshop/)
+- [inSileco's workshop](https://insileco.io/learning_git/)
+- [NCEAS workshop on Git and GitHub](https://pages.github.nceas.ucsb.edu/lter/github-workshop/)
+- [Happy Git and GitHub for the useR](https://happygitwithr.com/)
+- [GitHub Learning Lab](https://lab.github.com/)
+- [GitHub Guides](https://guides.github.com/)
+- [GitHub Cheat Sheet](https://github.github.com/training-kit/downloads/github-git-cheat-sheet.pdf)
+
+# Optional slides {background-color="#40666e"}
+
+## Files status in RStudio Git Tab
+
+![](https://pages.github.nceas.ucsb.edu/lter/github-workshop/images/rstudio-icons.png){fig-align="center" width="70%"}
+
+
+<!-- 
+Slide 2: Le remote pour collaborer
+  - Schéma avec Github ou Schéma plus simple dans le cours de BIO500
+Slide 3: Comment créer un remote
+  repo = folder
+  On a vu comment initier un dossier pour qu'il devienne un repository (Git)
+  Maintenant on veut dire à Git que ce dossier dispose d'un dépot central (remote), accessible à d'autres utilisateurs
+
+Slide 4: Créer un compte Github
+Slide 6: Parametrer ses credentials pour que son ordinateur puisse communiquer avec Github
+usethis::set_github credentials
+Slide 5: Synchroniser son dépot sur Github
+  - Git fetch --all
+  - Git pull 
+  - Git push
+
+Slide 6: Explorer son dépot sur Github
+  - Ou sont les commits
+  - C'est quoi la branche 
+  Se rendre sur un dépot plus complexe pour visualiser différentes branches
+
+Slide 7: Les conflits
+Qu'est-ce qu'un conflit?
+Collision dans un ensemble de fichier. Un collaborateur à fait des modifications à mon code qui rentre en collision avec ma version du code en local. Je dois résoudre ces conflits avant de pouvoir publier sur le dépoot central (remote)
+
+Exercice
+
+Careful: Don't push
+
+
+
+
+ -->
 
 
 
