@@ -569,6 +569,298 @@ A lot of the content of this workshop come from or are based on the following re
 - [GitHub Cheat Sheet](https://github.github.com/training-kit/downloads/github-git-cheat-sheet.pdf)
 
 
-# Thank you! {background-color="#40666e" text-align="center"}
+# <span style="font-weight:lighter;font-size:32px">Workshop 3</span> <br> Create and deploy a Quarto document on Github {background-color="#40666e"}
+
+## What we will learn in this workshop
+
+1. What is a Quarto document?
+2. How Quarto document are structured?
+3. How deploy it on GitHub Pages?
+
+## What is Quarto?
+
+Quarto is a tool for creating documents, presentations, websites, and more from plain text files.
+
+:::{style="text-align:right;font-size:0.8em;"}
+![Illustration by Allison Horst](https://datascience.arizona.edu/sites/default/files/styles/az_large/public/2022-08/horst_quarto_schematic.png.webp?itok=KtFxH5hY){fig-align="center" fig.width="90%"}
+:::
+
+## What is Quarto?
+
+- Quarto is a next-generation R Markdown. It is an open-source scientific and technical publishing system built on Pandoc.
+- Pandoc is a universal document converter that can convert between many different file formats.
+- In Quarto, you can write in Markdown and include code chunks in R, Python, Julia, or Observable JavaScript.
+
+:::{style="text-align:right;font-size:0.8em;"}
+![Illustration by Allison Horst](https://mine.quarto.pub/hello-quarto/images/horst_qmd_render_schema.png){fig-align="center" fig.width="85%"}
+:::
+
+## Quarto formats
+
+:::: {.columns}
+::: {.column width="50%"}
+```{r}
+#| label: interactive-plot
+#| echo: false
+#| message: false
+#| warning: false
+#| out.width: "100%"
+
+
+# Create a basic interactive scatter plot
+fig <- plotly::plot_ly(data = iris, x = ~Petal.Width, y = ~Sepal.Length, color = ~Species,  
+               type = "scatter", mode = "markers") |> 
+    plotly::layout(width="500", height="400", legend=list(title=list(text='Species'))) 
+
+plotly::config(fig, scrollZoom = FALSE)
+```
+:::
+::: {.column width="50%"}
+- HTML document for web and dynamic reporting: user can interact with the document via a web browser.
+- PDF and word document are static documents and are a more conventional way to share documents.
+:::
+::::
+
+## Create a Quarto document
+
+### Let's practice a bit
+
+1. Create a new Quarto document in RStudio: `File > New File > Quarto Document`
+2. Choose a name for your document and save it in the same folder as your Git repository
+3. Edit the YAML header to set the document author, date
+4. Click on the *Render* button in the same panel as the Quarto document
+
+{{< countdown minutes=5 >}}
+
+## Create a Quarto document
+
+:::{.callout-tip}
+In Rstudio, you can use the *Visual* mode to edit your Quarto document. 
+This mode allows you to see the document as it will be rendered, while still being able to edit the source code.
+
+![](img/quarto-visual-vs-source.png){fig-align="center" width="80%"}
+:::
+
+## Create a Quarto document
+
+:::{.callout-tip}
+You can render the document in a viewer Rstudio panel instead of opening a new window in the browser.
+
+![](img/render-in-panel.png){fig-align="center" width="80%"}
+:::
+
+
+## Quarto document structure
+
+:::: {.columns}
+::: {.column width="45%"}
+![](https://econumuds.github.io/BIO500/bloc2/assets/img/Rmarkdown_anatomie.png){fig.width="100%"}
+:::
+::: {.column width="55%"}
+![](https://insileco.io/learning_git/img/part4/rmd.png){fig.width="100%"}
+:::
+::::
+
+# Metadata: YAML syntax {background-color="#40666e"}
+
+## Header: YAML Metadata 
+
+### The YAML header is the first part of a Quarto document
+
+:::: {.columns}
+::: {.column width="45%"}
+- Starts and ends with three hyphens (`---`)
+- Contains the metadata of the document
+- Comes first in the `.Qmd` file
+- Sets Pandoc document options with `key: value` (YAML syntax)
+- Available options depend on the output format 
+:::
+::: {.column width="55%"}
+```yaml
+---
+title: "My document title"
+date: "01-03-2021"
+author: Me, you, them
+output: pdf_document  
+---
+```
+:::
+::::
+
+## Document options
+
+It depends on the output format. 
+Options are available in the Quarto documentation:
+
+1. [HTML Options](https://quarto.org/docs/reference/formats/html.html)
+2. [PDF Options](https://quarto.org/docs/reference/formats/pdf.html)
+3. [Word Options](https://quarto.org/docs/reference/formats/docx.html)
+
+# Corpus: Markdown syntax {background-color="#40666e"}
+
+## Headers
+
+- ```# Heading 1```
+- ```## Heading 2```
+- ```### Heading 3```
+- ```#### Heading 4```
+- ```##### Heading 5```
+- ```###### Heading 6```
+
+## Text formatting
+
+- ```Normal text```
+- ```_Italic_ *text*```
+- ```__Bold__ **text**```
+- ```***Bold italic*** **_text_**```
+- ```~~Strikethrough text~~```
+
+## Text formatting
+
+- Blockquote: `> This is a blockquote`
+- Unordered list: 
+
+```md
+- item 1
+- item 2
+```
+
+- Ordered list: 
+
+```md
+1. first
+2. second
+```
+- Equation: ` $e^{\pi i} + 1 = 0$`
+
+## Markdown syntax
+
+Insert a image using the following syntax:
+
+```md
+![caption](link)
+```
+
+Insert a link using the following syntax:
+
+```md
+[alt](link)
+```
+
+## Let's practice a bit
+
+1. Insert a header
+2. Insert text in a blockquote
+2. Insert an image
+   
+{{< countdown minutes=5 >}}
+
+# Code: code chunk syntax {background-color="#40666e"}
+
+## Code chunk syntax
+
+### How to insert a code chunk
+
+**Question:** Where is the code chunk and where is the markdown text?
+
+````md
+Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+
+```{{r}}
+data(iris)
+head(iris)
+```
+````
+
+## Code chunk options
+
+```{{r}}
+#| label: chunk-options
+#| fig-cap: "Comparison on Sepal Length and Sepal Width in the iris dataset"
+#| echo: true 
+
+library(ggplot2)
+data(iris)
+ggplot(
+      data=iris,
+      aes(x = Sepal.Length,
+          y = Sepal.Width)
+  ) +
+geom_point(
+  aes(color=Species, shape=Species)
+) +
+xlab("Sepal Length") +
+ylab("Sepal Width") +
+ggtitle("Sepal Length-Width")
+```
+
+## Code chunk options
+
+| **Option** | **Description** |
+|------------|-----------------|
+| `eval`     | Evaluate the code chunk (if false, just echos the code into the output). |
+| `echo`     | Include the source code in output. |
+| `output`   | Include the results of executing the code in the output (`true`, `false`, or `asis` to indicate that the output is raw markdown and should not have any of Quarto’s standard enclosing markdown). |
+| `warning`  | Include warnings in the output. |
+| `error`    | Include errors in the output (note that this implies that errors executing code will not halt processing of the document). |
+| `include`  | Catch-all for preventing any output (code or results) from being included. |
+
+## Inline code
+
+It is also possible to include inline code in the text.
+
+```md
+Dans le dataset iris, il y a une taille d'échantillonnage 
+de `{r} nrow(iris)` individus pour l'ensemble des espèces.
+```
+
+**Which gives:**
+
+Dans le dataset iris, il y a une taille d'échantillonnage de `{r} nrow(iris)` individus pour l'ensemble des espèces.
+
+## Let's practice a bit
+
+1. Create a figure using the `ggplot2` package
+2. Write a short text that gives the mean and standard deviation for each species of the `Sepal.Length` variable in the `iris` dataset.
+3. Write a text that quickly describe the figure and make a reference to the figure in the text
+
+:::{.callout-tip}
+[Documentation on cross references](https://quarto.org/docs/authoring/cross-references.html)
+:::
+
+{{< countdown minutes=15 >}}
+
+# Deployment on the HTML report on Github {background-color="#40666e"}
+
+## Deployment on Github
+
+- Quarto documents can be deployed on GitHub Pages
+- GitHub Pages is a static site hosting service that takes files from a repository on GitHub and publishes them as a website
+
+## Step 1. Create a Quarto project
+
+To do so, we have to transform our Quarto document into Quarto project.
+A Quarto project is a directory that contains a `_quarto.yml` file.
+
+```yml
+project:
+  type: website
+  output-dir: docs
+```
+
+## Step 2. Render the Quarto document 
+
+We have to render the Quarto document to HTML. 
+This will create a `docs` folder in the project directory, as specified in the `_quarto.yml` file. 
+
+This folder will contain the HTML files of the Quarto document.
+Then we commit and push the changes to the remote repository.
+
+## Step 3. Configure GitHub Pages
+
+Finally, configure your GitHub repository to publish from the docs directory of your main branch:
+
+![](https://quarto.org/docs/publishing/images/gh-pages-docs-dir.png)
+
 
 
