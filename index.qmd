@@ -811,7 +811,7 @@ It is also possible to include inline code in the text.
 
 ```md
 Dans le dataset iris, il y a une taille d'échantillonnage 
-de `{r} nrow(iris)` individus pour l'ensemble des espèces.
+de `{{r}} nrow(iris)` individus pour l'ensemble des espèces.
 ```
 
 **Which gives:**
